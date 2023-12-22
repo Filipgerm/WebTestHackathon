@@ -189,7 +189,7 @@ describe('Add Item to Cart', function() {
         });
     });
 
-    it('{UNhappy path}should calculate amount of money correctly - defect ID 1', function() {
+    it('{Unhappy path}should calculate amount of money correctly - defect ID 1', function() {
          
         // Increases the quantity of an item without adding it to the cart
         cy.get('a.increment') // Select all divs with class product-image
@@ -260,7 +260,7 @@ describe('Add Item to Cart', function() {
         .should('be.visible');
     })
 
-    it('Get Error Message When Terms & Conditions are not Sellected - defect ID 3', function(){
+    it('{Unhappy path} Get Error Message When Terms & Conditions are not Sellected - defect ID 3', function(){
         // Click on the cart icon
         cy.get('a.cart-icon').click();
 
