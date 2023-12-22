@@ -260,5 +260,26 @@ describe('Add Item to Cart', function() {
         .should('be.visible');
     })
 
+    it('Get Error Message When Terms & Conditions are not Sellected - defect ID 3', function(){
+        // Click on the cart icon
+        cy.get('a.cart-icon').click();
+
+        // Click on the 'PROCEED TO CHECKOUT' button
+        cy.contains('button', 'PROCEED TO CHECKOUT').click();
+
+        // Click on the 'Place Order' button
+        cy.contains('button', 'Place Order').click();
+
+        // Click on the checkbox with the class 'chkAgree'
+        cy.get('input[type="checkbox"].chkAgree').click();
+
+        // Click on the 'Proceed' button without accepting the terms and conditions
+        cy.get('button').contains('Proceed').click();
+
+        // Verify that the error message about terms and conditions appears
+        cy.contains('Please enter country name - Required')
+        .should('be.visible'); // Defect, the order is completed , but this should not be the case.An error message about country should have aSd
+    })
+
 });
 
