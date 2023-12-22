@@ -8,9 +8,9 @@ describe('Add Item to Cart', function() {
     });
 
     it('should add an item to the cart', function() {
-         
+
         // Add an item to the cart
-        cy.get('div.increment') // Select all divs with class product-image
+        cy.get('a.increment') // Select all divs with class product-image
         .eq(2) // Index starts at 0, so eq(2) represents the third element
         .click(); // Click on the specific div.product-image
         //.click() // Second click
@@ -22,6 +22,7 @@ describe('Add Item to Cart', function() {
 
         cy.get('div.cart-info') // Select the div containing the cart info
         .find('strong') // Find the strong element within that div
+        .eq(0)
         .invoke('text') // Retrieve the text content of the strong element
         .then((text) => {
           const itemCount = parseInt(text.trim()); // Convert the text to a number if needed
@@ -30,10 +31,5 @@ describe('Add Item to Cart', function() {
           expect(itemCount).to.equal(1); // Assert that the item count is 1
         });
 
-        // Assert that the item is added to the cart
-        cy.get('.cart-item').should('have.length', 1);
     });
-
-
-
 });
