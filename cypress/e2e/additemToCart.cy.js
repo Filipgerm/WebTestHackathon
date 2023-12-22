@@ -215,4 +215,29 @@ describe('Add Item to Cart', function() {
         });
     });
 
+    it('The order is correctly recorded, and a confirmation message is displayed', function(){
+        // Click on the cart icon
+        cy.get('a.cart-icon').click();
+
+        // Click on the 'PROCEED TO CHECKOUT' button
+        cy.contains('button', 'PROCEED TO CHECKOUT').click();
+
+        // Click on the 'Place Order' button
+        cy.contains('button', 'Place Order').click();
+
+        // Select 'India' from the dropdown menu
+        cy.get('select').select('India');
+
+        // Click on the checkbox with the class 'chkAgree'
+        cy.get('input[type="checkbox"].chkAgree').click();
+
+        // Click on the button (replace the selector with the actual button selector)
+        cy.get('button').contains('Proceed').click();
+
+        // Verify that the confirmation message appears
+        cy.contains('Thank you, your order has been placed successfully You\'ll be redirected to Home page shortly!!')
+        .should('be.visible');
+    });
+
 });
+
