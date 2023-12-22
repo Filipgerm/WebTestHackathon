@@ -281,5 +281,34 @@ describe('Add Item to Cart', function() {
         .should('be.visible'); // Defect, the order is completed , but this should not be the case.An error message about country should have aSd
     })
 
+    it('Inserting a promo code, the respective discount is automatically calculated. There is no correct code.', function(){
+        // Click on the cart icon
+        cy.get('a.cart-icon').click();
+
+        // Click on the 'PROCEED TO CHECKOUT' button
+        cy.contains('button', 'PROCEED TO CHECKOUT').click();
+
+
+        
+        cy.get('button.promoBtn')
+        .click(); // Click on the Apply button
+
+        cy.get('span.promoInfo')
+        .should('be.visible') // Check if the error message is visible on the page
+        .and('have.text', 'Empty code ..!'); // Verify the text content of the error message
+
+        // Click on the 'Enter Promo Code' button
+        cy.get('input.promoCode')
+        .type('YOUR_PROMO_CODE_HERE') // Replace with your desired promo code
+        .should('have.value', 'YOUR_PROMO_CODE_HERE'); // Assert that the text was entered
+
+        // cy.get('button.promoBtn')
+        // .click(); // Click on the Apply button
+
+        // cy.get('span.promoInfo')
+        // .should('be.visible') // Check if the error message is visible on the page
+        // .and('have.text', 'Invalid code ..!'); // Verify the text content of the error message
+    })
+
 });
 
