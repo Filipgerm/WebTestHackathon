@@ -239,5 +239,26 @@ describe('Add Item to Cart', function() {
         .should('be.visible');
     });
 
+    it('Get Error Message When Terms & Conditions are not Sellected', function(){
+        // Click on the cart icon
+        cy.get('a.cart-icon').click();
+
+        // Click on the 'PROCEED TO CHECKOUT' button
+        cy.contains('button', 'PROCEED TO CHECKOUT').click();
+
+        // Click on the 'Place Order' button
+        cy.contains('button', 'Place Order').click();
+
+        // Select 'India' from the dropdown menu
+        cy.get('select').select('India');
+
+        // Click on the 'Proceed' button without accepting the terms and conditions
+        cy.get('button').contains('Proceed').click();
+
+        // Verify that the error message about terms and conditions appears
+        cy.contains('Please accept Terms & Conditions - Required')
+        .should('be.visible');
+    })
+
 });
 
